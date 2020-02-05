@@ -1,0 +1,36 @@
+set -e
+log_info() {
+  printf "\n\e[0;35m $1\e[0m\n\n"
+}
+
+log_info "Updating Packages ..."
+	sudo apt-get update
+
+log_info "Installing Git ..."
+  sudo apt-get install git
+
+log_info "Installing Git GUI ..."
+  sudo apt-get install git-gui
+
+log_info "Installing build essentials ..."
+  sudo apt-get -y install build-essential
+
+log_info "Installing Postgres ..."
+  sudo apt-get -y install postgresql postgresql-contrib libpq-dev
+
+log_info "Installing curl & openssl..."
+  sudo apt-get -y install curl openssl
+
+log_info "Installing ImageMagick ..."
+  sudo apt-get -y install imagemagick
+
+log_info "Installing RVM,stable ruby and bundler...."
+	gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+	\curl -sSL https://get.rvm.io | bash -s stable --ruby
+	echo "source $HOME/.rvm/scripts/rvm" >> ~/.bash_profile
+	gem install bundler
+
+log_info "Installing Node.js ..."
+	curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+	sudo apt-get install -y nodejs
+
